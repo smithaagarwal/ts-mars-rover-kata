@@ -1,4 +1,5 @@
 import {
+  executeRoverInstruction,
   isInstructionValid,
   moveRover,
   turnRoverLeft,
@@ -167,6 +168,19 @@ describe("test function moveRover", () => {
   });
 });
 
+describe("test function executeRoverInstruction", () => {
+  it("should update the endPosition of the rover after executing the instruction", () => {
+    const actualRover = creatRoverWithPositionAndInstruction(1, 1, "N", "MM");
+    const actualPlateau = createPlateauTestData(5, 5);
+    executeRoverInstruction(actualRover, actualPlateau);
+    expect(actualRover.currentPosition).toEqual({
+      x: 1,
+      y: 3,
+      facingDirection: "N",
+    });
+  });
+});
+
 const createRoverWithDirection = (dir: direction) => {
   return {
     initialPosition: {
@@ -181,5 +195,42 @@ const createRoverWithDirection = (dir: direction) => {
     },
     roverInstruction: "LMLMLMLMM",
     message: "",
+  };
+};
+
+const creatRoverWithPositionAndInstruction = (
+  xCoordinate: number,
+  yCoordinate: number,
+  dir: direction,
+  inputInstruction: string
+) => {
+  return {
+    initialPosition: {
+      x: xCoordinate,
+      y: yCoordinate,
+      facingDirection: dir,
+    },
+    currentPosition: {
+      x: xCoordinate,
+      y: yCoordinate,
+      facingDirection: dir,
+    },
+    roverInstruction: inputInstruction,
+    message: "",
+  };
+};
+
+const createPlateauTestData = (
+  xCoordinate: number,
+  yCoordinate: number
+): plateau => {
+  return {
+    plateauArea: {
+      maxX: xCoordinate,
+      maxY: yCoordinate,
+      minX: 0,
+      minY: 0,
+    },
+    rovers: [],
   };
 };

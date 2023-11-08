@@ -69,3 +69,20 @@ export const moveRover = (marsRover: rover, mars: plateau) => {
     marsRover.message = `Cannot move rover to out of bound coordinates (${xCoordinate}, ${yCoordinate}).`;
   }
 };
+
+export const executeRoverInstruction = (marsRover: rover, mars:plateau) => {
+    marsRover.roverInstruction.split('').forEach( singleInstruction => {
+        switch(singleInstruction) {
+            case "L":
+                turnRoverLeft(marsRover);
+            break;
+            case "R":
+                turnRoverRight(marsRover);
+            break;
+            case "M":
+                moveRover(marsRover,mars);
+            break;
+        }
+    });
+
+};
