@@ -5,10 +5,11 @@ const INSTRUCTIONS = ["L", "R", "M"] as const;
 type instruction = (typeof INSTRUCTIONS)[number];
 const INCREMENT_STEPS_BY = 1;
 
-export const isInstructionValid = (instructionForRover: string): boolean => {
-  let regEx = /^[LRM\s]+$/;
-  return regEx.test(instructionForRover);
+export const isInstruction = (input: string): input is "L" | "R" | "M" => {
+  return ["L", "R", "M"].includes(input);
 };
+export const isInstructionSetValid = (instructionForRover: string): boolean =>
+  [...instructionForRover].every(isInstruction);
 
 export const turnRoverLeft = (marsRover: rover) => {
   switch (marsRover.currentPosition.facingDirection) {
@@ -84,6 +85,8 @@ export const executeRoverInstruction = (marsRover: rover, mars: plateau) => {
         break;
     }
     //should stop executing instruction if the error message is set when rover can't be moved
-    return marsRover.errorMessage !== undefined && marsRover.errorMessage.length > 0;
+    return (
+      marsRover.errorMessage !== undefined && marsRover.errorMessage.length > 0
+    );
   });
 };

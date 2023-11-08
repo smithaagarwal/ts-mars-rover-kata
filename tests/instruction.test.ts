@@ -1,6 +1,6 @@
 import {
   executeRoverInstruction,
-  isInstructionValid,
+  isInstructionSetValid,
   moveRover,
   turnRoverLeft,
   turnRoverRight,
@@ -8,12 +8,12 @@ import {
 import { plateau } from "../src/plateau";
 import { direction, rover } from "../src/rover";
 
-describe("test isInstructionValid function", () => {
+describe("test isInstructionSetValid function", () => {
   it("should return true if the instruction is valid with L R or M in it", () => {
-    expect(isInstructionValid("LMLMLMLMM")).toBe(true);
+    expect(isInstructionSetValid("LMLMLMLMM")).toBe(true);
   });
   it("should return true if the instruction is valid with L R or M in it", () => {
-    expect(isInstructionValid("LMLMLMLSAM")).toBe(false);
+    expect(isInstructionSetValid("LMLMLMLSAM")).toBe(false);
   });
 });
 
