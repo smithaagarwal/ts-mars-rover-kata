@@ -1,3 +1,4 @@
+import { executeRoverInstruction } from "./instruction";
 import { rover } from "./rover";
 
 interface grid {
@@ -26,4 +27,10 @@ export const createPlateau = (x: number, y: number): plateau => {
     },
     rovers: [],
   };
+};
+
+export const moveRoversOnPlateau = (mars: plateau) => {
+  mars.rovers.forEach((rover) => {
+    executeRoverInstruction(rover, mars);
+  });
 };

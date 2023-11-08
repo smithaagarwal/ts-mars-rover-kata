@@ -1,12 +1,13 @@
-import { moveRoversOnPlateau } from "../src/main";
-import { createPlateau, plateau } from "../src/plateau";
+import { moveRoversOnPlateau } from "../src/plateau";
+import { createPlateau } from "../src/plateau";
 import { createRover, direction } from "../src/rover";
 import * as fs from "fs";
+import * as path from "path";
 
-describe.only("Read input", () => {
+describe.only("Read input from file", () => {
   it("should read input and test rover movements", () => {
-    console.log(__dirname);
-    const file = fs.readFileSync(`${__dirname}\\input.txt`, "utf-8");
+    const filePath = path.join(__dirname, "..", "input.txt");
+    const file = fs.readFileSync(filePath, "utf-8");
     const fileContents = file.split(/\r?\n/);
     const gridSize = fileContents[0].split(" ");
     const plateau = createPlateau(Number(gridSize[0]), Number(gridSize[1]));
@@ -50,55 +51,3 @@ describe.only("Read input", () => {
     });
   });
 });
-
-describe("test function moveRoversOnPlateau", () => {
-  it("should execute the instructions for one  rover on the plateau", () => {
-    const actualPlateau = createPlateauTestDataWithSingleRover(
-      5,
-      5,
-      1,
-      2,
-      "N",
-      "LMLMLMLMM"
-    );
-    moveRoversOnPlateau(actualPlateau);
-    expect(actualPlateau.rovers[0].currentPosition).toEqual({
-      x: 1,
-      y: 3,
-      facingDirection: "N",
-    });
-  });
-});
-
-const createPlateauTestDataWithSingleRover = (
-  gridX: number,
-  gridY: number,
-  roverX: number,
-  roverY: number,
-  roverDirection: direction,
-  roverInstructionSet: string
-): plateau => {
-  return {
-    plateauArea: {
-      maxX: gridX,
-      maxY: gridY,
-      minX: 0,
-      minY: 0,
-    },
-    rovers: [
-      {
-        initialPosition: {
-          x: roverX,
-          y: roverY,
-          facingDirection: roverDirection,
-        },
-        currentPosition: {
-          x: roverX,
-          y: roverY,
-          facingDirection: roverDirection,
-        },
-        roverInstruction: roverInstructionSet,
-      },
-    ],
-  };
-};
