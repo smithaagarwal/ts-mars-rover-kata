@@ -27,6 +27,10 @@ export const checkRoverPositionAgainstPlateau = (
   );
 };
 
+export function checkRoverInputDirection(inputRoverDirection: string): boolean {
+  return (DIRECTIONS as ReadonlyArray<String>).includes(inputRoverDirection);
+}
+
 export const createRover = (
   xCoordinate: number,
   yCoordinate: number,

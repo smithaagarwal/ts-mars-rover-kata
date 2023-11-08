@@ -1,5 +1,9 @@
 import { plateau } from "../src/plateau";
-import { checkRoverPositionAgainstPlateau, createRover } from "../src/rover";
+import {
+  checkRoverInputDirection,
+  checkRoverPositionAgainstPlateau,
+  createRover,
+} from "../src/rover";
 
 const actualPlateau: plateau = {
   plateauArea: {
@@ -34,5 +38,20 @@ describe("test function createRover", () => {
       },
       roverInstruction: "LMLMLMLMM",
     });
+  });
+});
+
+describe("test function checkRoverInputDirection", () => {
+  it("returns true if direction is either N, S , E or W", () => {
+    expect(checkRoverInputDirection("N")).toBe(true);
+  });
+  it("returns true if direction is either N, S , E or W", () => {
+    expect(checkRoverInputDirection("W")).toBe(true);
+  });
+  it("returns false if direction is not one of N, S , E or W", () => {
+    expect(checkRoverInputDirection("North")).toBe(false);
+  });
+  it("returns false if direction is not one of N, S , E or W", () => {
+    expect(checkRoverInputDirection("D")).toBe(false);
   });
 });
