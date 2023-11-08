@@ -17,7 +17,7 @@ export const checkGridCordinates = (x: number, y: number): boolean => {
 };
 
 export const createPlateau = (x: number, y: number): plateau => {
-  const mars: plateau = {
+  return {
     plateauArea: {
       maxX: x,
       maxY: y,
@@ -26,5 +26,4 @@ export const createPlateau = (x: number, y: number): plateau => {
     },
     rovers: [],
   };
-  return mars;
 };

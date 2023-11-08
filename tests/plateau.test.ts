@@ -1,4 +1,4 @@
-import { checkGridCordinates, plateau } from "../src/plateau";
+import { checkGridCordinates, createPlateau, plateau } from "../src/plateau";
 
 describe("test checkGridCordinates function to see if the grid values passed by used is valid", () => {
   it("returns true if numbers greater than 0 are passed ", () => {
@@ -12,7 +12,7 @@ describe("test checkGridCordinates function to see if the grid values passed by 
   });
 });
 
-const plateau1: plateau = {
+const expectedPlateau: plateau = {
   plateauArea: {
     maxX: 5,
     maxY: 5,
@@ -21,3 +21,9 @@ const plateau1: plateau = {
   },
   rovers: [],
 };
+
+describe("test createPlateau to verify plateau with the given grid coordinates is created ", () => {
+  it("should return a plateau with grid coordinates that are passed", () => {
+    expect(createPlateau(5, 5)).toEqual(expectedPlateau);
+  });
+});
