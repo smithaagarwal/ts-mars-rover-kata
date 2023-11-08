@@ -72,7 +72,7 @@ export const moveRover = (marsRover: rover, mars: plateau) => {
 };
 
 export const executeRoverInstruction = (marsRover: rover, mars: plateau) => {
-  marsRover.roverInstruction.split("").some((singleInstruction) => {
+  [...marsRover.roverInstruction].some((singleInstruction) => {
     switch (singleInstruction) {
       case "L":
         turnRoverLeft(marsRover);
