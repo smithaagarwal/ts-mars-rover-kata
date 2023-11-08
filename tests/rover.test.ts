@@ -14,12 +14,60 @@ const actualPlateau: plateau = {
   },
   rovers: [],
 };
+
+const actualPlateaueWithRovers: plateau = {
+  plateauArea: {
+    maxX: 10,
+    maxY: 10,
+    minX: 0,
+    minY: 0,
+  },
+  rovers: [
+    {
+      initialPosition: {
+        x: 2,
+        y: 3,
+        facingDirection: "W",
+      },
+      currentPosition: {
+        x: 0,
+        y: 3,
+        facingDirection: "W",
+      },
+      roverInstruction: "MM",
+    },
+    {
+      initialPosition: {
+        x: 1,
+        y: 3,
+        facingDirection: "N",
+      },
+      currentPosition: {
+        x: 1,
+        y: 3,
+        facingDirection: "W",
+      },
+      roverInstruction: "LMLMLMLMM",
+    },
+  ],
+};
+
 describe("test function checkRoverPositionAgainstPlateau", () => {
   it("returns true, if the rover coordinates are within the plateau", () => {
     expect(checkRoverPositionAgainstPlateau(3, 5, actualPlateau)).toBe(true);
   });
   it("returns false, if the rover coordinates are within the plateau", () => {
     expect(checkRoverPositionAgainstPlateau(6, 5, actualPlateau)).toBe(false);
+  });
+  it("returns true, if the rover coordinates are within the plateau and no other rover is at that position", () => {
+    expect(
+      checkRoverPositionAgainstPlateau(3, 3, actualPlateaueWithRovers)
+    ).toBe(true);
+  });
+  it("returns false, if the rover coordinates are within the plateau and there is a rover at that position", () => {
+    expect(
+      checkRoverPositionAgainstPlateau(0, 3, actualPlateaueWithRovers)
+    ).toBe(false);
   });
 });
 

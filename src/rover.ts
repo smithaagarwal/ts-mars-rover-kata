@@ -19,12 +19,19 @@ export const checkRoverPositionAgainstPlateau = (
   y: number,
   mars: plateau
 ): boolean => {
-  return (
+  if (
     x <= mars.plateauArea.maxX &&
     y <= mars.plateauArea.maxY &&
     x >= mars.plateauArea.minX &&
     y >= mars.plateauArea.minY
-  );
+  ) {
+    return mars.rovers.every(
+      (rover) =>
+        !(rover.currentPosition.x === x && rover.currentPosition.y === y)
+    );
+  } else {
+    return false;
+  }
 };
 
 export const checkRoverInputDirection = (

@@ -4,7 +4,7 @@ import { createRover, direction } from "../src/rover";
 import * as fs from "fs";
 import * as path from "path";
 
-describe.only("Read input from file", () => {
+describe("Read input from file", () => {
   it("should read input and test rover movements", () => {
     const filePath = path.join(__dirname, "..", "input.txt");
     const file = fs.readFileSync(filePath, "utf-8");

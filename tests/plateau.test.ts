@@ -1,4 +1,4 @@
-import { checkGridCordinates, createPlateau, moveRoversOnPlateau, plateau, plateau } from "../src/plateau";
+import { checkGridCordinates, createPlateau, moveRoversOnPlateau, plateau } from "../src/plateau";
 import { direction } from "../src/rover";
 
 describe("test checkGridCordinates function to see if the grid values passed by used is valid", () => {
