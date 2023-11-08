@@ -162,7 +162,7 @@ describe("test function moveRover", () => {
       y: 2,
       facingDirection: "W",
     });
-    expect(actualRoverFacingWest.message).toEqual(
+    expect(actualRoverFacingWest.errorMessage).toEqual(
       "Cannot move rover to out of bound coordinates (-1, 2)."
     );
   });
@@ -222,7 +222,7 @@ describe("test function executeRoverInstruction with instruction that can't be f
       y: 1,
       facingDirection: "W",
     });
-    expect(actualRover.message).toEqual(
+    expect(actualRover.errorMessage).toEqual(
       "Cannot move rover to out of bound coordinates (-1, 1)."
     );
   });
@@ -241,7 +241,7 @@ describe("test function executeRoverInstruction with instruction that can't be f
       y: 1,
       facingDirection: "E",
     });
-    expect(actualRover.message).toEqual(
+    expect(actualRover.errorMessage).toEqual(
       "Cannot move rover to out of bound coordinates (6, 1)."
     );
   });
@@ -260,7 +260,7 @@ const createRoverWithDirection = (dir: direction) => {
       facingDirection: dir,
     },
     roverInstruction: "LMLMLMLMM",
-    message: "",
+    errorMessage: "",
   };
 };
 
@@ -282,7 +282,7 @@ const creatRoverWithPositionAndInstruction = (
       facingDirection: dir,
     },
     roverInstruction: inputInstruction,
-    message: "",
+    errorMessage: "",
   };
 };
 

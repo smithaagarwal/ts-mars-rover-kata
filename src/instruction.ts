@@ -66,7 +66,7 @@ export const moveRover = (marsRover: rover, mars: plateau) => {
     marsRover.currentPosition.x = xCoordinate;
     marsRover.currentPosition.y = yCoordinate;
   } else {
-    marsRover.message = `Cannot move rover to out of bound coordinates (${xCoordinate}, ${yCoordinate}).`;
+    marsRover.errorMessage = `Cannot move rover to out of bound coordinates (${xCoordinate}, ${yCoordinate}).`;
   }
 };
 
@@ -84,6 +84,6 @@ export const executeRoverInstruction = (marsRover: rover, mars: plateau) => {
         break;
     }
     //should stop executing instruction if the error message is set when rover can't be moved
-    return marsRover.message !== undefined && marsRover.message.length > 0;
+    return marsRover.errorMessage !== undefined && marsRover.errorMessage.length > 0;
   });
 };

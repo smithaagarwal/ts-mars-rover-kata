@@ -11,7 +11,7 @@ export interface rover {
   initialPosition: position;
   currentPosition: position;
   roverInstruction: string;
-  message?: string;
+  errorMessage?: string;
 }
 
 export const checkRoverPositionAgainstPlateau = (
