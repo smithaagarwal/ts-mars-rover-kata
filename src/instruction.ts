@@ -70,19 +70,20 @@ export const moveRover = (marsRover: rover, mars: plateau) => {
   }
 };
 
-export const executeRoverInstruction = (marsRover: rover, mars:plateau) => {
-    marsRover.roverInstruction.split('').forEach( singleInstruction => {
-        switch(singleInstruction) {
-            case "L":
-                turnRoverLeft(marsRover);
-            break;
-            case "R":
-                turnRoverRight(marsRover);
-            break;
-            case "M":
-                moveRover(marsRover,mars);
-            break;
-        }
-    });
-
+export const executeRoverInstruction = (marsRover: rover, mars: plateau) => {
+  marsRover.roverInstruction.split("").some((singleInstruction) => {
+    switch (singleInstruction) {
+      case "L":
+        turnRoverLeft(marsRover);
+        break;
+      case "R":
+        turnRoverRight(marsRover);
+        break;
+      case "M":
+        moveRover(marsRover, mars);
+        break;
+    }
+    //should stop executing instruction if the error message is set when rover can't be moved
+    return marsRover.message !== undefined && marsRover.message.length > 0;
+  });
 };

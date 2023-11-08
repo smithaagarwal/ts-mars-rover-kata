@@ -170,7 +170,22 @@ describe("test function moveRover", () => {
 
 describe("test function executeRoverInstruction", () => {
   it("should update the endPosition of the rover after executing the instruction", () => {
-    const actualRover = creatRoverWithPositionAndInstruction(1, 1, "N", "MM");
+    const actualRover = creatRoverWithPositionAndInstruction(1, 1, "N", "M");
+    const actualPlateau = createPlateauTestData(5, 5);
+    executeRoverInstruction(actualRover, actualPlateau);
+    expect(actualRover.currentPosition).toEqual({
+      x: 1,
+      y: 2,
+      facingDirection: "N",
+    });
+  });
+  it("should update the endPosition of the rover after executing the instruction given in rquirement doc", () => {
+    const actualRover = creatRoverWithPositionAndInstruction(
+      1,
+      2,
+      "N",
+      "LMLMLMLMM"
+    );
     const actualPlateau = createPlateauTestData(5, 5);
     executeRoverInstruction(actualRover, actualPlateau);
     expect(actualRover.currentPosition).toEqual({
@@ -178,6 +193,57 @@ describe("test function executeRoverInstruction", () => {
       y: 3,
       facingDirection: "N",
     });
+  });
+
+  it("should update the endPosition of the rover after executing the instruction given in rquirement doc", () => {
+    const actualRover = creatRoverWithPositionAndInstruction(
+      3,
+      3,
+      "E",
+      "MMRMMRMRRM"
+    );
+    const actualPlateau = createPlateauTestData(5, 5);
+    executeRoverInstruction(actualRover, actualPlateau);
+    expect(actualRover.currentPosition).toEqual({
+      x: 5,
+      y: 1,
+      facingDirection: "E",
+    });
+  });
+});
+
+describe("test function executeRoverInstruction with instruction that can't be fulfilled", () => {
+  it("should update the endPosition of the rover to the last possible move and update error message for rover", () => {
+    const actualRover = creatRoverWithPositionAndInstruction(0, 1, "W", "M");
+    const actualPlateau = createPlateauTestData(5, 5);
+    executeRoverInstruction(actualRover, actualPlateau);
+    expect(actualRover.currentPosition).toEqual({
+      x: 0,
+      y: 1,
+      facingDirection: "W",
+    });
+    expect(actualRover.message).toEqual(
+      "Cannot move rover to out of bound coordinates (-1, 1)."
+    );
+  });
+
+  it("should update the endPosition of the rover to the last possible move and update error message for rover", () => {
+    const actualRover = creatRoverWithPositionAndInstruction(
+      3,
+      3,
+      "E",
+      "MMRMMRMRRMM"
+    );
+    const actualPlateau = createPlateauTestData(5, 5);
+    executeRoverInstruction(actualRover, actualPlateau);
+    expect(actualRover.currentPosition).toEqual({
+      x: 5,
+      y: 1,
+      facingDirection: "E",
+    });
+    expect(actualRover.message).toEqual(
+      "Cannot move rover to out of bound coordinates (6, 1)."
+    );
   });
 });
 
