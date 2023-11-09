@@ -67,7 +67,7 @@ export const moveRover = (marsRover: rover, mars: plateau) => {
     marsRover.currentPosition.x = xCoordinate;
     marsRover.currentPosition.y = yCoordinate;
   } else {
-    marsRover.errorMessage = `Cannot move rover to out of bound coordinates (${xCoordinate}, ${yCoordinate}).`;
+    marsRover.errorMessage = `Cannot move rover to out of bound/occupied coordinates (${xCoordinate}, ${yCoordinate}).`;
   }
 };
 

@@ -163,7 +163,7 @@ describe("test function moveRover", () => {
       facingDirection: "W",
     });
     expect(actualRoverFacingWest.errorMessage).toEqual(
-      "Cannot move rover to out of bound coordinates (-1, 2)."
+      "Cannot move rover to out of bound/occupied coordinates (-1, 2)."
     );
   });
 });
@@ -223,7 +223,7 @@ describe("test function executeRoverInstruction with instruction that can't be f
       facingDirection: "W",
     });
     expect(actualRover.errorMessage).toEqual(
-      "Cannot move rover to out of bound coordinates (-1, 1)."
+      "Cannot move rover to out of bound/occupied coordinates (-1, 1)."
     );
   });
 
@@ -242,7 +242,7 @@ describe("test function executeRoverInstruction with instruction that can't be f
       facingDirection: "E",
     });
     expect(actualRover.errorMessage).toEqual(
-      "Cannot move rover to out of bound coordinates (6, 1)."
+      "Cannot move rover to out of bound/occupied coordinates (6, 1)."
     );
   });
 });
